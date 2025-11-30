@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZB73_ODATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Product" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prdid"/>
+                </Key>
+                <Property Name="Prdid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Product Id"/>
+                <Property Name="Prdname" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Product Name"/>
+                <Property Name="Prdcategory" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Category"/>
+                <Property Name="Prdprice" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Price"/>
+                <Property Name="Currcode" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Rating" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Rating"/>
+                <NavigationProperty Name="toAttachments" Relationship="ZB73_ODATA_SRV.ProductsToAttachments" FromRole="FromRole_ProductsToAttachments" ToRole="ToRole_ProductsToAttachments"/>
+                <NavigationProperty Name="AttachmentSet" Relationship="ZB73_ODATA_SRV.ProductsToAttachments1" FromRole="FromRole_ProductsToAttachments1" ToRole="ToRole_ProductsToAttachments1"/>
+            </EntityType>
+            <EntityType Name="Attachment" m:HasStream="true" sap:is-thing-type="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prdid"/>
+                    <PropertyRef Name="Filename"/>
+                </Key>
+                <Property Name="Prdid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="PRDID" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="FILENAME" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="FILETYPE" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filecontent" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Order" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Orderno"/>
+                </Key>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ORDERNO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Custname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="CUSTNAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="ADDRESS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Totalitems" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="TOTALITEMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Netprice" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Data element for Product Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ordereddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="ORDEREDDATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toOrderItems" Relationship="ZB73_ODATA_SRV.OrdersToOrderItems" FromRole="FromRole_OrdersToOrderItems" ToRole="ToRole_OrdersToOrderItems"/>
+            </EntityType>
+            <EntityType Name="OrderItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Orderno"/>
+                    <PropertyRef Name="Itemno"/>
+                </Key>
+                <Property Name="Orderno" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ORDERNO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="ITEMNO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemdesc" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="ITEMDESC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unitprice" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Data element for Product Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qty" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Totalprice" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:label="Data element for Product Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="OrdersToOrderItems" sap:content-version="1">
+                <End Type="ZB73_ODATA_SRV.Order" Multiplicity="1" Role="FromRole_OrdersToOrderItems"/>
+                <End Type="ZB73_ODATA_SRV.OrderItem" Multiplicity="*" Role="ToRole_OrdersToOrderItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_OrdersToOrderItems">
+                        <PropertyRef Name="Orderno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_OrdersToOrderItems">
+                        <PropertyRef Name="Orderno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductsToAttachments1" sap:content-version="1">
+                <End Type="ZB73_ODATA_SRV.Product" Multiplicity="1" Role="FromRole_ProductsToAttachments1"/>
+                <End Type="ZB73_ODATA_SRV.Attachment" Multiplicity="*" Role="ToRole_ProductsToAttachments1"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductsToAttachments1">
+                        <PropertyRef Name="Prdid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductsToAttachments1">
+                        <PropertyRef Name="Prdid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductsToAttachments" sap:content-version="1">
+                <End Type="ZB73_ODATA_SRV.Product" Multiplicity="1" Role="FromRole_ProductsToAttachments"/>
+                <End Type="ZB73_ODATA_SRV.Attachment" Multiplicity="*" Role="ToRole_ProductsToAttachments"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductsToAttachments">
+                        <PropertyRef Name="Prdid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductsToAttachments">
+                        <PropertyRef Name="Prdid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZB73_ODATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ProductSet" EntityType="ZB73_ODATA_SRV.Product" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachmentSet" EntityType="ZB73_ODATA_SRV.Attachment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderSet" EntityType="ZB73_ODATA_SRV.Order" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderItemSet" EntityType="ZB73_ODATA_SRV.OrderItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ProductsToAttachmentsSet" Association="ZB73_ODATA_SRV.ProductsToAttachments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProductSet" Role="FromRole_ProductsToAttachments"/>
+                    <End EntitySet="AttachmentSet" Role="ToRole_ProductsToAttachments"/>
+                </AssociationSet>
+                <AssociationSet Name="OrdersToOrderItemsSet" Association="ZB73_ODATA_SRV.OrdersToOrderItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrderSet" Role="FromRole_OrdersToOrderItems"/>
+                    <End EntitySet="OrderItemSet" Role="ToRole_OrdersToOrderItems"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductsToAttachments1Set" Association="ZB73_ODATA_SRV.ProductsToAttachments1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProductSet" Role="FromRole_ProductsToAttachments1"/>
+                    <End EntitySet="AttachmentSet" Role="ToRole_ProductsToAttachments1"/>
+                </AssociationSet>
+                <FunctionImport Name="getPrdById" ReturnType="ZB73_ODATA_SRV.Product" EntitySet="ProductSet" m:HttpMethod="GET">
+                    <Parameter Name="ProductId" Type="Edm.String" Mode="In" MaxLength="6"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="http://49.206.197.10:8034/sap/opu/odata/sap/ZB73_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://49.206.197.10:8034/sap/opu/odata/sap/ZB73_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

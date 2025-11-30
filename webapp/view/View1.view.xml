@@ -1,0 +1,57 @@
+<mvc:View
+    controllerName="com.demo.b73ui5app.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page id="page" title="I am View1">
+        <content>
+            <Table items="{/ProductSet}" class ="sapUiMediumMarginBeginEnd" width="auto">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Product List"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://excel-attachment" type="Emphasized"/>
+                    </Toolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column>
+                        <Text text="Product ID"/>
+                    </Column>
+                    <Column>
+                        <Text text="Product Name"/>
+                    </Column>
+                    <Column>
+                        <Text text="Product Catagory"/>
+                    </Column>
+                    <Column>
+                        <Text text="Product Price"/>
+                    </Column>
+                    <Column>
+                        <Text text="Currency Code"/>
+                    </Column>
+                    <Column>
+                        <Text text="Ratings"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <Text text="{Prdid}"/>
+                        <Text text="{Prdname}"/>
+                        <Text text="{Prdcategory}"/>
+                        <Text text ="{Prdprice}"/>
+                        <Text text ="{Currcode}"/>
+                        <Text text ="{Rating}"/>
+                    </ColumnListItem>
+                </items>
+
+            </Table>
+        </content>
+    </Page>
+
+</mvc:View>
