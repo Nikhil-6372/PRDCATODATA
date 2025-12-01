@@ -10,7 +10,7 @@
   "main": "webapp/index.html",
   "devDependencies": {
     "@sap/ux-ui5-tooling": "1",
-    "@ui5/cli": "^4.0.33",
+    "@ui5/cli": "^4.0.37",
     "ui5-middleware-simpleproxy": "^3.5.2"
   },
   "scripts": {
