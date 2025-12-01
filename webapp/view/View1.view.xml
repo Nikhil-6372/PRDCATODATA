@@ -9,30 +9,37 @@
 
     <Page id="page" title="I am View1">
         <content>
-        <!-- This is the List Ui Element Binding when Client using the app morew in the mobile we are using this method
-        <List items="{/ProductSet}" class="sapUiMediumMarginBeginEnd" width="auto">
-            <headerToolbar>
-                <Toolbar >
-                    <Text text="Product List"/>
-                    <ToolbarSpacer ></ToolbarSpacer>
-                    <Button icon="sap-icon://excel-attachment" type="Emphasized"/>
-                </Toolbar>
-            </headerToolbar>
-            <items>
-             <ObjectListItem title="{Prdname}" number="{Prdprice}" numberUnit="{Currcode}">
-              <attributes>
-              </attributes>
-               <ObjectAttribute text="{Prdid}"></ObjectAttribute>
-             </ObjectListItem>
-            </items>
-        </List> -->
-         <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6">
-         <f:content>
-         <Label text="Product ID"/>
-         <Input id="idPrdid" showValueHelp="true" valueHelpRequest="onPressF4Help"/>
-         </f:content>
-         </f:SimpleForm>
-            <Table id="idTable" items="{/ProductSet}" mode="SingleSelectLeft"  class ="sapUiMediumMarginBeginEnd" width="auto">
+
+            <!-- This is the List Ui Element Binding when Client using the app morew in the mobile we are using this method
+            <List items="{/ProductSet}" class="sapUiMediumMarginBeginEnd" width="auto">
+                <headerToolbar>
+                    <Toolbar>
+                        <Text text="Product List"/>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button icon="sap-icon://excel-attachment" type="Emphasized"/>
+                    </Toolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem title="{Prdname}" number="{Prdprice}" numberUnit="{Currcode}">
+                        <attributes>
+                        </attributes>
+                        <ObjectAttribute text="{Prdid}"></ObjectAttribute>
+                    </ObjectListItem>
+                </items>
+            </List> -->
+
+            <f:SimpleForm title="New" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6">
+
+                <f:content>
+                    <Label text="Product ID"/>
+                    <Input id="idPrdid" showValueHelp="true" valueHelpRequest="onPressF4Help"/>
+                </f:content>
+
+            </f:SimpleForm>
+
+            <Table
+                id="idTable" items="{/ProductSet}" mode="SingleSelectLeft" class="sapUiMediumMarginBeginEnd" width="auto">
+
                 <headerToolbar>
                     <Toolbar>
                         <Title text="Product List"/>
@@ -63,23 +70,28 @@
                 </columns>
 
                 <items>
-                    <ColumnListItem type="Active"  press="onPressRow">
+                    <ColumnListItem type="Active" press="onPressRow">
                         <Text text="{Prdid}"/>
                         <Text text="{Prdname}"/>
                         <Text text="{Prdcategory}"/>
-                        <Text text ="{Prdprice}"/>
-                        <Text text ="{Currcode}"/>
-                        <Text text ="{Rating}"/>
+                        <Text text="{Prdprice}"/>
+                        <Text text="{Currcode}"/>
+                        <Text text="{Rating}"/>
                     </ColumnListItem>
                 </items>
+
             </Table>
+
         </content>
+
         <footer>
-         <Bar>
-         <contentRight>
-            <Button text="Submit" type="Emphasized" press="onPressSubmit"/>
-         </contentRight>
-         </Bar>
+            <Bar>
+                <contentRight>
+                    <Button text="Submit" type="Emphasized" press="onPressSubmit"/>
+                </contentRight>
+            </Bar>
         </footer>
+
     </Page>
+
 </mvc:View>
