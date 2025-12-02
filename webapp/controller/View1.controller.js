@@ -1,17 +1,23 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageBox",
+    "com/demo/b73ui5app/model/formatter",
+    "sap/ui/export/Spreadsheet"
+
+], 
+(Controller, JSONModel, MessageBox, formatter, Spreadsheet) => {
     "use strict";
 
     return Controller.extend("com.demo.b73ui5app.controller.View1", {
+        f:formatter,
 
         onInit() {
 
             //Read Method (This Method is only use when u need to do some mandatoruy configuration which is not present) 
             //We use JSON model here
             //no need but for the understanding purpose i add a SNo. column here ,it works when u bind the data with json module configuration ([JSON Model name>/array name (results)])
-
+            
             var prdJSONModel = new JSONModel();
             this.getView().setModel(prdJSONModel, "prdJSONModel");
 
@@ -50,6 +56,53 @@ sap.ui.define([
         },
         onCloseDialog: function () {
             this.oDialog.close();
+        },
+
+        // *EXPORT TO XL*
+
+        onExportToXL:function() {
+            var aCols, oRowBinding, oSettings, oSheet, oTable;
+            oTable = this.getView().byId('idTable'); //Change ID as per ur table ID
+            oRowBinding = oTable.getBinding('items');
+            var oModel = this.getOwnerComponent().getModel();
+            
+            //Place Your table Columns and OData Properties 
+            aCols = [{
+                label: 'Product ID',
+                property: 'Prdid'
+            },
+            {
+             label: 'Product Name',
+                proerty: 'Prdname'   
+            },
+            {
+             label: 'Product Catagory',
+                property: 'Prdcategory'   
+            },
+            {
+             label: 'Product Price',
+                property: 'Prdprice'   
+            },
+            {
+             label: 'Currency Code',
+                property: 'Currcode'   
+            },
+            {
+             label: 'Ratings',
+                property: 'Rating'   
+            }];
+            oSettings = {
+                workbook: {
+                    columns: aCols
+                },
+                dataSource: oRowBinding,
+                fileName: 'Products.xlsx',
+                worker: true 
+            };
+            oSheet = new Spreadsheet(oSettings);
+            oSheet.build().finally(function () {
+                oSheet.destroy();
+            });
         }
 
     });

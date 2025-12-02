@@ -44,7 +44,7 @@
                     <Toolbar>
                         <Title text="Product List"/>
                         <ToolbarSpacer/>
-                        <Button icon="sap-icon://excel-attachment" type="Emphasized"/>
+                        <Button icon="sap-icon://excel-attachment" type="Emphasized" press="onExportToXL"/>
                     </Toolbar>
                 </headerToolbar>
 
@@ -73,8 +73,8 @@
                     <ColumnListItem type="Active" press="onPressRow">
                         <Text text="{Prdid}"/>
                         <Text text="{Prdname}"/>
-                        <Text text="{Prdcategory}"/>
-                        <Text text="{Prdprice}"/>
+                        <ObjectStatus text="{Prdcategory}" state="{path:'Prdcategory', formatter:'.f.colorCategory'}"/>
+                        <Text text="{path:'Prdprice', formatter:'.f.formatCurrency'}"/>
                         <Text text="{Currcode}"/>
                         <Text text="{Rating}"/>
                     </ColumnListItem>
