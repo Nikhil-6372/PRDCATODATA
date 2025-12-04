@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:odata="sap.ui.comp.odata"
     controllerName="com.demo.b73ui5app.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:l="sap.ui.layout"
@@ -28,14 +28,58 @@
                 </items>
             </List> -->
 
-            <f:SimpleForm title="New" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6">
 
-                <f:content>
+        
+            <Panel headerText = "Search Products" expandable = "true" expanded="true">
+                <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6">
+                    <f:content>
+
                     <Label text="Product ID"/>
                     <Input id="idPrdid" showValueHelp="true" valueHelpRequest="onPressF4Help"/>
-                </f:content>
 
-            </f:SimpleForm>
+                    <Label text ="Product Name"/>
+                    <Input id ="idPrdname"/>
+
+                    <Label text="Product Catagory"/>
+                    <ComboBox id="idPrdCategory">
+                    <items>
+                        <core:Item  text = "ELECTRONICS" key = "ELECTRONICS" />
+                        <core:Item  text = "SPORTS" key = "SPORTS" />
+                        <core:Item  text = "ACCESSORIES" key = "ACCESSORIES" />
+                    </items>
+                    </ComboBox>
+
+                    <Label text = "Product Rating"/>
+
+
+                    <Label text ="Product Ratings"/>
+                    <Input id ="idPrdrating"/>
+
+                    <Label text ="Product Price"/>
+                    <ComboBox id="idPriceOPr" selectionChange = "onSelOpr">
+                        <items>
+                            <core:Item text ="Equals to" key="EQ" />
+                            <core:Item text ="Not Equals to" key="NE" />
+                            <core:Item text ="Greater than" key="GT" />
+                            <core:Item text ="Less than" key="LT" />    
+                            <core:Item text ="Greater than or equals to" key="GE" />
+                            <core:Item text ="Less than or equals to" key="LE" />
+                            <core:Item text ="Between" key="BT" />
+
+
+                        </items>
+                    </ComboBox>
+                    <Input id= "idRangeLow"></Input>
+                    <Input id="idRangeHigh" visible = "false"></Input>
+
+                    </f:content>
+                </f:SimpleForm>
+
+                <FlexBox justifyContent="End">
+                <Button text="Go" type = "Emphasized" icon="sap-icon://accept" press="onPressGo"/>
+                <Button text="Reset" type ="Negative" icon="sap-icon://reject" class="sapUiTinyMarginBegin" press="onPressReset"/>
+                </FlexBox>
+            </Panel>
 
             <Table
                 id="idTable" items="{/ProductSet}" mode="SingleSelectLeft" class="sapUiMediumMarginBeginEnd" width="auto">
