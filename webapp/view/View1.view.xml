@@ -31,9 +31,9 @@
 
         
             <Panel headerText = "Search Products" expandable = "true" expanded="true">
-                <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6">
-                    <f:content>
-
+              <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0">
+                <f:content>
+                  <core:Title text="Filters:"/>
                     <Label text="Product ID"/>
                     <Input id="idPrdid" showValueHelp="true" valueHelpRequest="onPressF4Help"/>
 
@@ -71,6 +71,18 @@
                     </ComboBox>
                     <Input id= "idRangeLow"></Input>
                     <Input id="idRangeHigh" visible = "false"></Input>
+
+                    <core:Title text="Sorters:"/>
+                    <Label text ="Sort Field"/>
+                    <ComboBox  id= "idSortField"/>
+                    <items>
+                        <core:Item text = "Product ID" key="Prdid"/>
+                        <core:Item text = "Name" key="Prdname"/>
+                        <core:Item text = "Category" key="Prdcategory"/>
+                        <core:Item text = "Price" key="Prdprice"/>
+                        <core:Item text = "Rating" key="Rating"/>
+
+                    </items>
 
                     </f:content>
                 </f:SimpleForm>
