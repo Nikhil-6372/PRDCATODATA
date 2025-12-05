@@ -4,10 +4,11 @@ sap.ui.define([
     "sap/m/MessageBox",
     "com/demo/b73ui5app/model/formatter",
     "sap/ui/export/Spreadsheet",
-    "sap/ui/model/Filter"
+    "sap/ui/model/Filter",
+    "sap/ui/model/Sorter"
 
 ],
-    (Controller, JSONModel, MessageBox, formatter, Spreadsheet, Filter) => {
+    (Controller, JSONModel, MessageBox, formatter, Spreadsheet, Filter, Sorter) => {
         "use strict";
 
         return Controller.extend("com.demo.b73ui5app.controller.View1", {
@@ -64,9 +65,12 @@ sap.ui.define([
             //Constructing the filter Here 
             //Remember Constructing the filter takes 3 Parameter 1. OData Field , 2.Operator, 3.Value 
             //If u want to add Multiple filters then u have to create an array in SAP UI5
+            //Remember Between Oprator takes 4 Parameter
+            //Adding here Sorters also
 
             onPressGo: function () {
                 var aFilters = [];
+                var aSorters = [];
 
                 var prdId = this.byId("idPrdid").getValue();
                 var prdName = this.byId("idPrdname").getValue();
@@ -89,34 +93,49 @@ sap.ui.define([
                     aFilters.push(new Filter("Rating", "EQ", prdRating));
                 }
 
-                if (prdOpr !== "" && prdPriceLow !=="") {
+                if (prdOpr !== "" && prdPriceLow !== "") {
                     if (prdOpr === "BT") {
                         var prdPriceHigh = this.byId("idRangeHigh").getValue();
-                        aFilters.push(new Filter("Prdprice", prdOpr , prdPriceLow,prdPriceHigh));
+                        aFilters.push(new Filter("Prdprice", prdOpr, prdPriceLow, prdPriceHigh));
                     }
                     else {
-                        aFilters.push(new Filter("Prdprice", prdOpr , prdPriceLow));
+                        aFilters.push(new Filter("Prdprice", prdOpr, prdPriceLow));
                     }
                 }
 
 
+                //Code for Sorting
+
+                var sortField = this.byId("idSortField").getSelectedKey();
+                var sortOrder = this.byId("idSortOrder").getSelectedIndex();
+
+
+                if (sortField !== "" && sortOrder !== -1) {
+                    aSorters.push(new Sorter(sortField, (sortOrder === 0) ? false : true));  //Sorters take 2 parameters 1.Odata field 2.
+                }
+
+
+
                 this.byId("idTable").getBinding("items").filter(aFilters);
+                this.byId("idTable").getBinding("items").sort(aSorters);
             },
 
 
             //ReSet
-            onPressReset:function() {
+            onPressReset: function () {
                 this.byId("idPrdid").setValue("");
                 this.byId("idPrdname").setValue("");
                 this.byId("idPrdCategory").setValue("");
                 this.byId("idPrdrating").setValue("");
-
                 this.byId("idPriceOPr").setSelectedKey("");
                 this.byId("idRangeLow").setValue("");
                 this.byId("idRangeHigh").setValue("");
-               
+                this.byId("idSortField").setSelectedKey("");
+                this.byId("idSortOrder").setSelectedIndex(-1);
+
 
                 this.byId("idTable").getBinding("items").filter([]);
+                this.byId("idTable").getBinding("items").sort([]);
             },
 
 
@@ -167,12 +186,12 @@ sap.ui.define([
                     oSheet.destroy();
                 });
             },
-            onSelOpr:function() {
+            onSelOpr: function () {
                 var opr = this.byId("idPriceOPr").getSelectedKey();
                 if (opr === "BT") {
                     this.byId("idRangeHigh").setVisible(true);
                 }
-                else{
+                else {
                     this.byId("idRangeHigh").setVisible(false);
                 }
             }
