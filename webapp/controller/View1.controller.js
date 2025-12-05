@@ -105,6 +105,26 @@ sap.ui.define([
 
 
                 //Code for Sorting
+                //If ur preject have both sorting and grouping requirment then grouping takes the priority so keep the grouping code first then sorting.
+                //Grouping is nothing but Sorting with Titles.
+
+                var groupField = this.byId("idGroupField").getSelectedKey();
+                var groupOrder = this.byId("idGroupOrder").getSelectedIndex();
+
+
+                if (groupField !== "" && groupOrder !== -1) {
+                    aSorters.push(new Sorter(groupField, (groupOrder === 0) ? false : true ,function(oBindingContext){
+                        var  category = oBindingContext.getProperty("Prdcategory");
+                        return{
+                            key:category,
+                            Text:category
+                        }
+
+                    }));  //Sorters take 2 parameters 1.Odata field   2.
+                }
+
+
+                //Sorting & Filtering starts from here actually
 
                 var sortField = this.byId("idSortField").getSelectedKey();
                 var sortOrder = this.byId("idSortOrder").getSelectedIndex();
@@ -132,6 +152,8 @@ sap.ui.define([
                 this.byId("idRangeHigh").setValue("");
                 this.byId("idSortField").setSelectedKey("");
                 this.byId("idSortOrder").setSelectedIndex(-1);
+                this.byId("idGroupField").setSelectedKey("");
+                this.byId("idGroupOrder").setSelectedIndex(-1);
 
 
                 this.byId("idTable").getBinding("items").filter([]);

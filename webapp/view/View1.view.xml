@@ -31,7 +31,7 @@
 
         
             <Panel headerText = "Search Products" expandable = "true" expanded="true">
-              <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0">
+              <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="3">
                 <f:content>
                   <core:Title text="Filters:"/>
                     <Label text="Product ID"/>
@@ -91,6 +91,22 @@
                         </buttons>
                     </RadioButtonGroup>
 
+                    <core:Title text = "Group:"/>
+                    <Label text = "Group Field"/>
+                    <ComboBox id="idGroupField">
+                        <items>
+                             <core:Item text="Category" key="Prdcategory"/>
+                             <core:Item text="Ratings" key="Rating"/>
+                        </items>
+                    </ComboBox>
+
+                    <Label text="Group Order"/>
+                    <RadioButtonGroup id = "idGroupOrder" selectedIndex = "-1" columns="2">
+                        <buttons>
+                            <RadioButton text="Ascending"/>
+                            <RadioButton text="Descending"/>
+                        </buttons>
+                    </RadioButtonGroup>
 
                     </f:content>
                 </f:SimpleForm>
