@@ -1,0 +1,29 @@
+<mvc:View controllerName="com.demo.b73ui5app.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page title="I'm View2" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <f:SimpleForm id="idSF" title="Product Details" editable="false">
+                <f:content>
+                    <Label text="Product Id"/>
+                    <Text text="{Prdid}"/>
+                    <Label text="Product Name"/>
+                    <Text text="{Prdname}"/>
+                    <Label text="Product Price"/>
+                    <Text text="{Prdprice}"/>
+                    <Label text="Currency Code"/>
+                    <Text text="{Currcode}"/>
+                    <Label text="Product Category"/>
+                    <Text text="{Prdcategory}"/>
+                    <Label text="Product Ratings"/>
+                    <Text text="{Rating}"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+    </Page>
+</mvc:View>

@@ -150,7 +150,7 @@
                 </columns>
 
                 <items>
-                    <ColumnListItem type="Active" press="onPressRow">
+                    <ColumnListItem type="Active" press="onPressRecord">
                         <Text text="{Prdid}"/>
                         <Text text="{Prdname}"/>
                         <ObjectStatus text="{Prdcategory}" state="{path:'Prdcategory', formatter:'.f.colorCategory'}"/>

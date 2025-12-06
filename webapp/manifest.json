@@ -91,16 +91,28 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "secondview/{key}",
+          "target": [
+            "TargetView2"
+          ]
         }
+
       ],
       "targets": {
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "TargetView2": {
+          "id": "View2",
+          "name": "View2"
         }
       }
     },

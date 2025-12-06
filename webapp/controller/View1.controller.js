@@ -113,11 +113,11 @@ sap.ui.define([
 
 
                 if (groupField !== "" && groupOrder !== -1) {
-                    aSorters.push(new Sorter(groupField, (groupOrder === 0) ? false : true ,function(oBindingContext){
-                        var  category = oBindingContext.getProperty("Prdcategory");
-                        return{
-                            key:category,
-                            Text:category
+                    aSorters.push(new Sorter(groupField, (groupOrder === 0) ? false : true, function (oBindingContext) {
+                        var category = oBindingContext.getProperty("Prdcategory");
+                        return {
+                            key: category,
+                            Text: category
                         }
 
                     }));  //Sorters take 2 parameters 1.Odata field   2.
@@ -216,6 +216,16 @@ sap.ui.define([
                 else {
                     this.byId("idRangeHigh").setVisible(false);
                 }
+            },
+
+            //Read Operation and nav to anathor View(47.00m/C-25)
+
+            onPressRecord: function (oEvent) {
+                var prdId = oEvent.getSource().getBindingContext().getProperty("Prdid");
+                this.getOwnerComponent().getRouter().navTo("RouteView2", {
+                    key: prdId
+                });
+
             }
 
         });
