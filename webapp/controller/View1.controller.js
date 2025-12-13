@@ -34,7 +34,7 @@ sap.ui.define([
                 });
             },
 
-            //*f4help onpress action is here*
+            //*F4help onpress action is here*
 
             onPressRow: function (oEvent) {
                 var prdId = oEvent.getSource().getBindingContext().getProperty("Prdid");
@@ -158,6 +158,10 @@ sap.ui.define([
 
                 this.byId("idTable").getBinding("items").filter([]);
                 this.byId("idTable").getBinding("items").sort([]);
+            },
+
+            onPressAdd: function () {
+                this.getOwnerComponent().getRouter().navTo("RouteView3");
             },
 
 

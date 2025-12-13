@@ -124,6 +124,9 @@
                     <Toolbar>
                         <Title text="Product List"/>
                         <ToolbarSpacer/>
+                        <Button text="Create Product" icon = "sap-icon://add" type = "Emphasized" press="onPressAdd"/>
+                        <Button text="Edit Product" icon = "sap-icon://edit" type ="Emphasized" press="onPressEdit"/>
+                        <Button text="Delete Product" icon ="sap-icon://delete" type="Negative" press="onPressDelete" />
                         <Button icon="sap-icon://excel-attachment" type="Emphasized" press="onExportToXL"/>
                     </Toolbar>
                 </headerToolbar>

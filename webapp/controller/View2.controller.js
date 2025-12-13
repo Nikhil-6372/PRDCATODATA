@@ -9,7 +9,7 @@ sap.ui.define([
         },
         onPatternMatched: function (oEvent) {
             var prdId = oEvent.getParameter("arguments").key;
-            this.byId("idSF").bindElement("/ProductSet('" + prdId + "')")
+            this.getView().bindElement("/ProductSet('" + prdId + "')")
         },
         onNavBack: function () {
             history.go(-1);

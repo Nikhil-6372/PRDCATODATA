@@ -8,7 +8,20 @@
 
     <Page title="I'm View2" showNavButton="true" navButtonPress="onNavBack">
         <content>
-            <f:SimpleForm id="idSF" title="Product Details" editable="false">
+
+            <ObjectHeader backgroundDesign="Solid" title = "{Prdname}" number="{Prdprice}" numberUnit="{Currcode}">
+                <attributes>
+                    <ObjectAttribute text="{Prdid}"></ObjectAttribute>
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{Rating}"></ObjectStatus>
+                </statuses>
+            </ObjectHeader>
+
+            <IconTabBar>
+                <items>
+                    <IconTabFilter icon="sap-icon://information">
+                        <f:SimpleForm id="idSF" title="Product Details" editable="false">
                 <f:content>
                     <Label text="Product Id"/>
                     <Text text="{Prdid}"/>
@@ -16,7 +29,7 @@
                     <Text text="{Prdname}"/>
                     <Label text="Product Price"/>
                     <Text text="{Prdprice}"/>
-                    <Label text="Currency Code"/>
+                    <Label text=" Code"/>
                     <Text text="{Currcode}"/>
                     <Label text="Product Category"/>
                     <Text text="{Prdcategory}"/>
@@ -24,6 +37,9 @@
                     <Text text="{Rating}"/>
                 </f:content>
             </f:SimpleForm>
+        </IconTabFilter>
+        </items>
+        </IconTabBar>
         </content>
     </Page>
 </mvc:View>
