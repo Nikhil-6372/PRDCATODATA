@@ -160,9 +160,19 @@ sap.ui.define([
                 this.byId("idTable").getBinding("items").sort([]);
             },
 
+            
+            //Create Function remaining in View3 Controller this is only for page navigation
+
             onPressAdd: function () {
                 this.getOwnerComponent().getRouter().navTo("RouteView3");
             },
+
+            //Edit function remaining in View3 Controller this is only for page navigation
+
+            onPressEdit: function() {
+                this.getOwnerComponent().getRouter().navTo("RouteView3");
+            },
+
 
 
 

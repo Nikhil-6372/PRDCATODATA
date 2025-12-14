@@ -15,7 +15,7 @@
                     <Label text = "Product Name"/>
                     <Input id = "idName"/>
                     <Label text = "Product Category"/>
-                    <Input id = "IdCat"/>
+                    <Input id = "idCat"/>
                     <Label text ="Product Price"/>
                     <Input id ="idPrice"/>
                     <Label text = "Currency Code"/>
