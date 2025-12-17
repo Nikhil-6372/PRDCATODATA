@@ -105,7 +105,7 @@
         },
          {
           "name": "RouteView3",
-          "pattern": "thirdview",
+          "pattern": "thirdview/:key:",
           "target": [
             "TargetView3"
           ]

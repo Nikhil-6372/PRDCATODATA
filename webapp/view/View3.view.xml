@@ -11,17 +11,17 @@
             <f:SimpleForm editable ="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="6" emptySpanM="6" >
                 <f:content>
                     <Label text = "Product Id"/>
-                    <Input id = "idPrdid" />
+                    <Input id = "idPrdid" value = "{Prdid}" />
                     <Label text = "Product Name"/>
-                    <Input id = "idName"/>
+                    <Input id = "idName" value = "{Prdname}"/>
                     <Label text = "Product Category"/>
-                    <Input id = "idCat"/>
+                    <Input id = "idCat" value = "{Prdcategory}"/>
                     <Label text ="Product Price"/>
-                    <Input id ="idPrice"/>
+                    <Input id ="idPrice" value = "{Prdprice}"/>
                     <Label text = "Currency Code"/>
-                    <Input id = "idCurrCode"/>
+                    <Input id = "idCurrCode" value = "{Currcode}"/>
                     <Label text ="Product Rating"/>
-                    <Input id ="idRating"/>
+                    <Input id ="idRating" value = "{Rating}"/>
                 </f:content>
             </f:SimpleForm>
         </content>

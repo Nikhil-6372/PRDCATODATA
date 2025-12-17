@@ -6,12 +6,25 @@ sap.ui.define([
 
     return Controller.extend("com.demo.b73ui5app.controller.View3", {
         onInit: function () {
+            this.getOwnerComponent().getRouter()
+                .getRoute("RouteView3")
+                .attachPatternMatched(this.onPatternMatched, this);
         },
 
-        // Create Function
-        
+        onPatternMatched: function (oEvent) {
+            this._prdId = oEvent.getParameter("arguments").key;
+
+            if (this._prdId !== undefined) {
+                // EDIT mode
+                this.getView().bindElement("/ProductSet('" + this._prdId + "')");
+            } else {
+                // CREATE mode
+                this.getView().unbindElement();
+            }
+        },
+
+        // Create / Update Function
         onPressSave: function () {
-            //Read  the new Product Data
             var prdId = this.byId("idPrdid").getValue();
             var name = this.byId("idName").getValue();
             var cat = this.byId("idCat").getValue();
@@ -20,26 +33,40 @@ sap.ui.define([
             var rating = parseInt(this.byId("idRating").getValue());
 
             var payload = {
-                Prdid : prdId,
-                Prdname : name,
-                Prdcategory : cat,
-                Prdprice : price,
-                Currcode : currcode,
-                Rating : rating 
+                Prdid: prdId,
+                Prdname: name,
+                Prdcategory: cat,
+                Prdprice: price,
+                Currcode: currcode,
+                Rating: rating
             };
 
             var oModel = this.getOwnerComponent().getModel();
-            oModel.create("/ProductSet", payload, {
-                success:function(req,res){
-                    MessageBox.success("New product created successfully");
-                },
-                error:function(error) {
-                    var error = JSON.parse(error.responseText).error.message.value;
-                    MessageBox.error(error);
-                }
-            })
-        },
 
+            if (this._prdId !== undefined) {
+                // UPDATE
+                oModel.update("/ProductSet('" + prdId + "')", payload, {
+                    success: function () {
+                        MessageBox.success("Product updated successfully");
+                    },
+                    error: function (error) {
+                        var msg = JSON.parse(error.responseText).error.message.value;
+                        MessageBox.error(msg);
+                    }
+                });
+            } else {
+                // CREATE
+                oModel.create("/ProductSet", payload, {
+                    success: function () {
+                        MessageBox.success("New product created successfully");
+                    },
+                    error: function (error) {
+                        var msg = JSON.parse(error.responseText).error.message.value;
+                        MessageBox.error(msg);
+                    }
+                });
+            }
+        },
 
         onNavBack: function () {
             history.go(-1);

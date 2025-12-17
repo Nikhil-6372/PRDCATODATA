@@ -169,8 +169,11 @@ sap.ui.define([
 
             //Edit function remaining in View3 Controller this is only for page navigation
 
-            onPressEdit: function() {
-                this.getOwnerComponent().getRouter().navTo("RouteView3");
+            onPressEdit: function(oEvent) {
+                var prdId = this.byId("idTable").getSelectedItem().getBindingContext().getProperty("Prdid");
+                this.getOwnerComponent().getRouter().navTo("RouteView3", {
+                    key: prdId
+                });
             },
 
 
