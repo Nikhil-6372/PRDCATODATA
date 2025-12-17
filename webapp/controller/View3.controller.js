@@ -12,11 +12,11 @@ sap.ui.define([
         },
 
         onPatternMatched: function (oEvent) {
-            this._prdId = oEvent.getParameter("arguments").key;
+            this.prdId = oEvent.getParameter("arguments").key;
 
-            if (this._prdId !== undefined) {
+            if (this.prdId !== undefined) {
                 // EDIT mode
-                this.getView().bindElement("/ProductSet('" + this._prdId + "')");
+                this.getView().bindElement("/ProductSet('" + this.prdId + "')");
             } else {
                 // CREATE mode
                 this.getView().unbindElement();
@@ -43,7 +43,7 @@ sap.ui.define([
 
             var oModel = this.getOwnerComponent().getModel();
 
-            if (this._prdId !== undefined) {
+            if (this.prdId !== undefined) {
                 // UPDATE
                 oModel.update("/ProductSet('" + prdId + "')", payload, {
                     success: function () {
