@@ -176,6 +176,23 @@ sap.ui.define([
                 });
             },
 
+            //Delect Product Function
+
+            onPressDelete:function() {
+                var prdId = this.byId("idTable").getSelectedItem().getBindingContext().getProperty("Prdid");
+                var oModel = this.getOwnerComponent().getModel();
+                oModel.remove("/ProductSet('"+prdId+"')",{
+                    success:function(req,res) {
+                        MessageBox.success("Product deleted Successfully");
+                        oModel.refresh(true);
+                    },
+                    error:function(error) {
+                        var error = JSON.parse(error.responseText).error.message.value;
+                        MessageBox.error(error);
+                    }
+                })
+            },
+
 
 
 
