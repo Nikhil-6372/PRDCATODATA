@@ -59,12 +59,55 @@ sap.ui.define([
                 oModel.create("/ProductSet", payload, {
                     success: function () {
                         MessageBox.success("New product created successfully");
-                    },
+                        //Call File Upload Logic
+                        this.triggerFileUpload();
+                    }.bind(this),
                     error: function (error) {
                         var msg = JSON.parse(error.responseText).error.message.value;
                         MessageBox.error(msg);
                     }
                 });
+            }
+        },
+
+        onUploadCompleted: function (oEvent) {
+            var status = oEvent.getParameter("status");
+            var fileName = oEvent.getParameter("item").getFileName();
+            if (status === 201) {
+                MessageBox.success(fileName + " Uploaded Successfully");
+            }
+            else {
+                MessageBox.error(fileName + " Not Uploaded Successfully");
+
+            }
+        },
+
+        triggerFileUpload: function () {
+            var prdId = this.byId("idPrdid").getvalue();
+            var uploadSet = this.byId("idUploadSet");
+            var aFiles = oUploadSet.getIncompleteItems();
+
+            for (var i = 0; i < aFiles.length; i++) {
+                var fileName = aFiles[i].getFileName();
+
+                //Step1 construct Slug
+                var slug = prdId + "," + fileName;
+
+                var oSlug = new sap.ui.core.Item({
+                    key: "SLUG",
+                    text: slug
+                });
+
+                //Step-2 Construct X-CSRF Token
+                this.getOwnerComponent().getModel().refreshSecurityToken();
+                var oXCSRFToken = new sap.ui.core.Item({
+                    key: "X-CSRF-Token",
+                    text: this.getOwnerComponent().getModel().getSecurityToken()
+                });
+                oUploadSet.addHeaderField(oSlug);
+                oUploadSet.addHeaderField(oXCSRFToken);
+                oUploadSet.uploadItem(aFiles[i]);
+                oUploadSet.removeAllHeaderFields();
             }
         },
 

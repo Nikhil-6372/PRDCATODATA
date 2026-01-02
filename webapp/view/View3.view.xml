@@ -4,7 +4,8 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
-    displayBlock="true">
+    displayBlock="true" 
+    xmlns:upload="sap.m.upload">
 
     <Page title="I'm View3" showNavButton="true" navButtonPress="onNavBack">
         <content>
@@ -24,6 +25,10 @@
                     <Input id ="idRating" value = "{Rating}"/>
                 </f:content>
             </f:SimpleForm>
+            <upload:UploadSet id="idUploadSet" class="sapUiSmallMargin" instantUpload="false" multiple="true" uploadUrl="/sap/opu/odata/sap/ZB73_ODATA_SRV/AttachmentSet"
+            uploadCompleted="onUploadCompleted"> 
+            </upload:UploadSet>
+
         </content>
         <footer>
             <Bar>
