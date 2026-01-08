@@ -5,7 +5,7 @@
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
     displayBlock="true" 
-    xmlns:upload="sap.m.upload">
+    xmlns:upload="sap.m.upload.UploadSet">
 
     <Page title="I'm View3" showNavButton="true" navButtonPress="onNavBack">
         <content>

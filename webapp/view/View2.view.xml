@@ -29,7 +29,7 @@
                     <Text text="{Prdname}"/>
                     <Label text="Product Price"/>
                     <Text text="{Prdprice}"/>
-                    <Label text=" Code"/>
+                    <Label text="Code"/>
                     <Text text="{Currcode}"/>
                     <Label text="Product Category"/>
                     <Text text="{Prdcategory}"/>
@@ -37,6 +37,31 @@
                     <Text text="{Rating}"/>
                 </f:content>
             </f:SimpleForm>
+        </IconTabFilter>
+
+        <IconTabFilter icon = "sap-icon://attachment">
+            <Table items = "{toAttachments}">
+                <columns>
+                    <Column>
+                        <Text text = "Product ID"/>
+                    </Column>
+                    <Column>
+                        <Text text = "File Name"/>
+                    </Column>
+                    <Column>
+                        <Text text = "Download"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text = "{Prdid}"/>
+                        <Text text = "{Filename}"/>
+                        <Button icon = "sap-icon://download" type = "Negative" press = "onDownload"/>
+                      </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
         </IconTabFilter>
         </items>
         </IconTabBar>

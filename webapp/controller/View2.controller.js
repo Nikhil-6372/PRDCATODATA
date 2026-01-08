@@ -13,6 +13,13 @@ sap.ui.define([
         },
         onNavBack: function () {
             history.go(-1);
+        },
+        onDownload: function (oEvent) {
+            var prdId = oEvent.getSource().getParent().getBindingContext().getProperty("Prdid");
+            var fileName = oEvent.getSource().getParent().getBindingContext().getProperty("Filename");
+            var url = "/sap/opu/odata/sap/ZB73_ODATA_SRV/AttachmentSet(Prdid='"  + prdId + "',Filename='" + fileName + "')/$value";
+            sap.m.URLHelper.redirect(url, false);
         }
+
     });
 });
